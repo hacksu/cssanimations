@@ -1,0 +1,166 @@
+/* CSS stands for Cascading Style Sheets. This is how we style our HTML code to be pretty and look nice. You can change almost any characteristic of an HTML element with css. The syntax is as follows:
+
+selector{
+
+  attribute: details;
+
+}
+
+where the selector is an element of html and an attribute is a characteristic of that element. Below are many examples. 
+
+It is important to note that the text you are reading right now will not be shown on our webpage. That's because this is a comment, so the browser doesn't read this text. I could say anything. Make a comment in CSS by inserting text like so but without the spaces inbetween the slash and star: / * TEXT * / */
+
+
+/*If you go to the other file included in this folder you'll see an index.html file. That is where our HTML is located. This is the actual content of our page, so all of our text, images, divs/containers, etc will be there. In this file, the style.css file, is where we change the aesthetic characteristics of those HTML elements. The browser opens the index.html but pulls our syntax into that file in line 6 where it says "	<link rel="stylesheet" type="text/css" href="style.css">" This is telling our browser, hey I have a css stylesheet in this folder and it's called style.css, so use it. And the browser listens, so we see our changes made here on the webpage.
+
+*/
+
+
+/* This styles all divs to have a height and width of 100px, and a background color of chartreuse. */
+div{
+
+  height:100px;
+  width: 100px;
+  background: #ace238;
+  
+}
+
+/*This allows us to make CSS changes to only the third div */
+#third{
+  
+  /*This will make our third div spin. It works similarly to a function call in traditional programming. Here's what the pieces mean:
+    1. -webkit-: This tells Chrome, Safari, or Opera to pay attention to what's next.
+    2. -moz- This tells Mozilla Firefox to pay attention to what's next.
+    3. -ms- This tells Internet Explorer 9 (and sometimes 8) to pay attention to what's next. We recommend testing this in Chrome or Firefox though, because Explorer sucks. 
+    4. animation: Tells the respective browser that an animation is about to be called.
+spin: this is the name of our animation, like a function name. It is defined later on in this file.
+    5. 2s: This is how long the animation will happen for
+    6. ease-in-out: This is animation type. Your options are linear, ease-in, ease-out, or ease-in-out. (There are some more complicated options, but these are simple). Linear means that the animation will happen the same speed the whole time. Ease-in means the animation will be slower in the beginning, whereas ease-out means it will be slower at the end. Ease-in-out is a combination of the latter two, making the animation slower in the beginning and end of the animation. You can make really cool effects with this. For example, if you had a bouncing ball, it would appear more realistic using ease-in-out because physics says the ball is moving faster as it nears the ground. So physics \m/ 
+    7. 0s: this is the animation delay. when you load your page, your animation will start at x seconds. we've set ours to 0s so there is no delay.
+    8. infinite: this makes our animation continue on infinitely. you don't need to include this if you don't want it to go infinitely. By default it does not. 
+    9. alternate: this makes the animation go in the alternate direction every other time. this can help make your animation smoother. you don't need to include this if you don't want it to go alternately. By default it does not. 
+  
+  Basically, the overall syntax for an animation call is:
+  -browsers-animation: name duration pattern(linear) delay repeat alternate */
+  -webkit-animation: spin 2s ease-in-out 0s infinite alternate;
+  -moz-animation: spin 2s ease-in-out 0s infinite alternate;
+  -ms-animation: spin 2s ease-in-out 0s infinite alternate;
+  animation: spin 2s ease-in-out 0s infinite alternate;
+}
+
+/*The #id selector allows us to change only elements with the id. Here, we're changing only our first div*/
+#first{
+  
+  /* This allows us to slide animate our div later on. Read more about CSS positioning here: http://blog.froont.com/positioning-in-web-design/ */
+  position:relative;
+  -webkit-animation: slideRight 2s ease-in-out 0s infinite alternate;
+  -moz-animation: slideRight 2s ease-in-out 0s infinite alternate;
+  -ms-animation: slideRight 2s ease-in-out 0s infinite alternate;
+  animation: slideRight 2s ease-in-out 0s infinite alternate;
+
+}
+
+/*This allows us to make changes to only things with the class of circle */
+.circle{
+
+  /* This makes a black border around our circle */
+  border: solid;
+  /*This line rounds the corners of our div, or makes it a circle. If 100px were a smaller value, it would just be a retangle with round corners. */
+  border-radius: 100px;
+  -webkit-animation: changeColor 5s linear 0s infinite alternate;
+  -moz-animation: changeColor 5s linear 0s infinite alternate;
+  -ms-animation: changeColor 5s linear 0s infinite alternate;
+  animation: changeColor 5s linear 0s infinite alternate;
+
+}
+
+/*------------------------------------------------
+Animation definitions:
+--------------------------------------------------
+--------------------------------------------------
+Spin 
+--------------------------------------------------*/
+
+/* This defines the spin animation for Chrome, Safari, Opera */
+@-webkit-keyframes spin {
+    /*This says: Browser, take whatever element of HTML that is being animated, and rotate it from 0 degrees to 360 (so in a full circle). */
+    from {-webkit-transform:rotate(0deg);}
+    to {-webkit-transform:rotate(360deg);}
+}
+
+/* This defines the spin animation for Mozilla Firefox. This says the same thing as the last one, but we have to define it for Firefox,  so wherever it said -webkit- it must now say -moz- */
+@-moz-keyframes spin {
+    from {-moz-transform:rotate(0deg);}
+    to {-moz-transform:rotate(360deg);}
+}
+
+/* This defines the spin animation for Internet Explorer 9, 10, and sometimes 8. This says the same thing as the last one, but we have to define it for IE, so wherever it said -webkit- or -moz- it must now say -ms- */
+@-ms-keyframes spin {
+    from {-ms-transform:rotate(0deg);}
+    to {-ms-transform:rotate(360deg);}
+}
+
+/* This defines the spin animation generally. */
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
+
+/*--------------------------------------------------
+changeColor 
+--------------------------------------------------*/
+/* These animation definitions work the same way as the last set, but instead of using from and to and only having two values, we're adding a third value. You can make the percent values whatever you want, and add as many as you need/want. */
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes changeColor {
+    0% {background: red;}
+    50% {background: yellow;}
+    100% {background: white;}
+}
+
+/* Mozilla Firefox */
+@-moz-keyframes changeColor {
+    0% {background: red;}
+    50% {background: yellow;}
+    100% {background: white;}
+}
+
+/* IE9 */
+@-ms-keyframes changeColor {
+    0% {background: red;}
+    50% {background: yellow;}
+    100% {background: white;}
+}
+
+@keyframes changeColor {
+    0% {background: red;}
+    50% {background: yellow;}
+    100% {background: white;}
+}
+
+
+/*--------------------------------------------------
+slideRight 
+--------------------------------------------------*/
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes slideRight {
+    from {right: 0px;}
+    to {right: -500px;}
+}
+
+/* Mozilla Firefox */
+@-moz-keyframes slideRight {
+    from {right: 0px;}
+    to {right: -500px;}
+  
+/* IE9 */
+@-ms-keyframes slideRight {
+    from {right: 0px;}
+    to {right: -500px;}
+}
+
+@keyframes slideRight {
+    from {right: 0px;}
+    to {right: -500px;}
+}
